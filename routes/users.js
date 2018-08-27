@@ -2,9 +2,9 @@
 var users = express.Router();
 const { User } = require("./models/user");
 /* GET users listing. */
-//router.get('/', function(req, res, next) {
- // res.send('respond with a resource');
-//});
+router.get('./models/user', function(req, res, next) {
+ res.send('respond with a resource');
+});
 
 module.exports = users;
 

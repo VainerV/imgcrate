@@ -4,7 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const { DATABASE_URL, PORT } = require('./config');
-
+const { User } = require("./models/user");
 mongoose.Promise = global.Promise;
 const app = express();
 

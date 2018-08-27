@@ -4,11 +4,11 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
 const mongoose = require('mongoose');
+const expect = chai.expect;
+const express = require('express');
+const app = express();
 var should = require("chai").should();
-
-//const expect = chai.expect;
-
-
+chai.use(chaiHttp);
 
 // sead db with the uses info 
 function seedUsersData() {
@@ -22,10 +22,13 @@ function seedUsersData() {
         }
       });
     }
+   // console.log(seedData);
     return Users.insertMany(seedData);
     
   }
 
+
+  // Before and After behavior
 describe('Users API resource', function () { 
   
     before(function () {
@@ -63,7 +66,7 @@ describe('Users API resource', function () {
       
   describe('GET endpoint', function () {
 
-    it('should return all number of users', function () {
+    it('should return  number of users', function () {
       
       let res;
       return chai.request(app)
@@ -95,9 +98,9 @@ describe('Users API resource', function () {
           
           res.body.should.have.lengthOf.at.least(1);
 
-            res.body.forEach(function (post) {
-            post.should.be.a('object');
-            post.should.include.keys('firstName', 'lastName', 'userName');
+            res.body.forEach(function (user) {
+            user.should.be.a('object');
+            user.should.include.keys('firstName', 'lastName', 'userName');
           });
           
           resUser = res.body[0];
@@ -105,10 +108,10 @@ describe('Users API resource', function () {
           return Users.findById(resUser.id);
           
         })
-        .then(post => {
-            resUser.firstName.should.equal(post.firstName);
-            resUser.lastName.should.equal(post.lastName);
-            resUser.userName.should.equal(post.userName);
+        .then(user => {
+            resUser.firstName.should.equal(user.firstName);
+            resUser.lastName.should.equal(user.lastName);
+            resUser.userName.should.equal(user.userName);
         });
     });
   });
