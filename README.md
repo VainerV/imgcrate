@@ -21,3 +21,6 @@ The app Traveling Gournal will allow users to share the images of the places the
 it will also allow the user to add comments like description of the place, location incl. map and seggestions how to get there.
 Places can vary from the iconic sites like Mount Rushmoore to the camping site in the stics. It will give people more ideas for travel.
 Explore the world.
+
+
+Main Screen ==> Sign Up or Login

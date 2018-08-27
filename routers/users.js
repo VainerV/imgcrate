@@ -1,23 +1,12 @@
-
-var users = express.Router();
-const { User } = require("./models/user");
-/* GET users listing. */
-router.get('./models/user', function(req, res, next) {
- res.send('respond with a resource');
-});
-
-module.exports = users;
-
-
 'use strict';
 
+const { User } = require("../models/user");
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-const { DATABASE_URL, PORT } = require('./config');
-const { User } = require('./models/user');
+const { DATABASE_URL, PORT } = require('../config');
 
 const app = express();
 
@@ -25,6 +14,7 @@ app.use(morgan('common'));
 app.use(express.json());
 
 app.get('/users', (req, res) => {
+  console.log("TESTING GET REQUEST");
   User
     .find()
     .then(users => {

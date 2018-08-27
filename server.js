@@ -4,18 +4,19 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const { DATABASE_URL, PORT } = require('./config');
-const { User } = require("./models/user");
+//const { User } = require("./models/user");
+const routerUsers = require('./routers/users');
 mongoose.Promise = global.Promise;
-const app = express();
 
+
+const app = express();
 app.use(morgan('common'));
 app.use(express.json());
 
+//app.use('/users', routerUsers);  // call for the router
 
+// Creating the server: Run and close
 
-// closeServer needs access to a server object, but that only
-// gets created when `runServer` runs, so we declare `server` here
-// and then assign a value to it in run
 let server;
 
 // this function connects to our database, then starts the server

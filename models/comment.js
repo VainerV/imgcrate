@@ -1,5 +1,6 @@
 'use strict';
 
+ // Model for comments
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 

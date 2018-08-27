@@ -1,3 +1,6 @@
+//Model for the user
+
+
 'use strict';
 
 const mongoose = require('mongoose');
@@ -8,26 +11,27 @@ mongoose.Promise = global.Promise;
 const userSchema = mongoose.Schema({
     user: {
         firstName: String,
-        lastName: String
+        lastName: String,
+        eMail: String,
       },
-   userName: {
+   uniqueUserName: {
     type: 'string',
     unique: true
   }
 });
 
 
-blogPostSchema.pre('find', function(next) {
+userSchema.pre('find', function(next) {
   this.populate('author');
   next();
 });
 
-blogPostSchema.pre('findOne', function(next) {
+userSchema.pre('findOne', function(next) {
   this.populate('author');
   next();
 });
 
-userSchema.virtual('userName').get(function() {
+userSchema.virtual('Name').get(function() {
   if(this.author) {
     return `${this.user.firstName} ${this.user.lastName}`.trim();
  } 
@@ -38,7 +42,8 @@ userSchema.virtual('userName').get(function() {
 userSchema.methods.serialize = function() {
   return {
     id: this._id,
-    user: this.userName,
+    user: this.Name,
+    userName: this.uniqueUserName,
   };
 };
 
@@ -48,4 +53,4 @@ userSchema.methods.serialize = function() {
 // schema must be defined *before* we make the call to `.model`.
 
 const User = mongoose.model('User', userSchema);
-module.exports = { User, Blogposts };
+module.exports = { User };
