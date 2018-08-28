@@ -1,6 +1,4 @@
 //Model for the user
-
-
 'use strict';
 
 const mongoose = require('mongoose');
@@ -16,7 +14,7 @@ const userSchema = mongoose.Schema({
       },
    uniqueUserName: {
     type: 'string',
-    unique: true
+   // unique: true
   }
 });
 
@@ -31,7 +29,7 @@ userSchema.pre('findOne', function(next) {
   next();
 });
 
-userSchema.virtual('Name').get(function() {
+userSchema.virtual('name').get(function() {
   if(this.author) {
     return `${this.user.firstName} ${this.user.lastName}`.trim();
  } 
@@ -42,7 +40,7 @@ userSchema.virtual('Name').get(function() {
 userSchema.methods.serialize = function() {
   return {
     id: this._id,
-    user: this.Name,
+    user: this.user,
     userName: this.uniqueUserName,
   };
 };

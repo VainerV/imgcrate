@@ -4,12 +4,11 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const { DATABASE_URL, PORT } = require('./config');
-//const { User } = require("./models/user");
-const routerUsers = require('./routers/users');
+//const routerUsers = require('./routers/users');
 mongoose.Promise = global.Promise;
 
-
-const app = express();
+const app = require('./app');  
+//const app = express();
 app.use(morgan('common'));
 app.use(express.json());
 
